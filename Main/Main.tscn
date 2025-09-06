@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://ccm5i3kgkxmmv"]
+
+[ext_resource type="Texture2D" uid="uid://b08v5rxi33ej" path="res://images/dahoa_bg2.jpg" id="1_83ytx"]
+[ext_resource type="PackedScene" uid="uid://clujkp6qjlnvo" path="res://Main/player.tscn" id="1_lxy7q"]
+[ext_resource type="Script" uid="uid://b0t5nf00lciwk" path="res://Main/main.gd" id="1_ps1la"]
+[ext_resource type="Texture2D" uid="uid://d3hei0gr3uls2" path="res://images/pexels-photo.jpeg" id="3_amygn"]
+[ext_resource type="PackedScene" uid="uid://c8jgb8k8raj45" path="res://Main/mr_fat_man.tscn" id="4_ps1la"]
+[ext_resource type="PackedScene" uid="uid://cmq0abm5ncob" path="res://canvas_layer.tscn" id="6_u2i7p"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_83ytx"]
+vertices = PackedVector3Array(-179.5, 40.5, -179.25, -179.75, 40.5, -179.5, -180.5, 40.5, -179.5, -180.5, 40.5, 179.5, -179.75, 40.5, 179.5, 179.75, 40.5, -180.5, -179.5, 40.5, -180.5, 179.25, 40.5, -179.5, 179.75, 40.5, -179.75, -179.5, 40.5, 180.5, -179.25, 40.5, 179.5, 179.5, 40.5, 179.25, 179.75, 40.5, 180.5, 179.75, 40.5, 179.75, 180.5, 40.5, 179.5, 180.5, 40.5, -179.5, -178.25, 1, -4, -5.50002, 1, -3.75, -5.50002, 1, -5.25, -3.75002, 1, -5.5, -4.00002, 1, -178.25, -178.25, 1, -178.25, 3.99998, 1, -5.5, 4.24998, 1, -178.25, 5.49998, 1, -5.5, 5.74998, 1, -3.75, 178.5, 1, -4, 178.5, 1, -178.25, -4.50002, 11, -4.5, -4.50002, 11, 4.5, 4.74998, 11, 4.5, 4.74998, 11, -4.5, -4.25002, 1, -4.25, -4.25002, 1, 4.5, 4.49998, 1, 4.5, 4.49998, 1, -4.25, -178.25, 1, 4.25, -5.50002, 1, 4, 5.74998, 1, 4, 178.5, 1, 4.25, -5.50002, 1, 5.5, -4.00002, 1, 178.5, -3.75002, 1, 5.75, -178.25, 1, 178.5, 5.49998, 1, 5.75, 3.99998, 1, 5.75, 4.24998, 1, 178.5, 178.5, 1, 178.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(8, 7, 5), PackedInt32Array(5, 7, 6), PackedInt32Array(6, 7, 0), PackedInt32Array(6, 0, 1), PackedInt32Array(9, 4, 10), PackedInt32Array(10, 4, 0), PackedInt32Array(13, 12, 11), PackedInt32Array(11, 12, 10), PackedInt32Array(10, 12, 9), PackedInt32Array(13, 11, 14), PackedInt32Array(14, 11, 15), PackedInt32Array(15, 11, 8), PackedInt32Array(8, 11, 7), PackedInt32Array(18, 17, 16), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21), PackedInt32Array(21, 18, 16), PackedInt32Array(19, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(24, 22, 23), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(27, 24, 23), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(35, 34, 32), PackedInt32Array(32, 34, 33), PackedInt32Array(37, 36, 17), PackedInt32Array(17, 36, 16), PackedInt32Array(25, 26, 38), PackedInt32Array(38, 26, 39), PackedInt32Array(36, 37, 40), PackedInt32Array(42, 41, 40), PackedInt32Array(40, 41, 43), PackedInt32Array(40, 43, 36), PackedInt32Array(46, 45, 44), PackedInt32Array(38, 39, 44), PackedInt32Array(44, 39, 47), PackedInt32Array(44, 47, 46), PackedInt32Array(42, 45, 41), PackedInt32Array(41, 45, 46)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83ytx"]
+albedo_color = Color(0.642637, 0.379725, 0, 1)
+albedo_texture = ExtResource("1_83ytx")
+uv1_scale = Vector3(25, 25, 25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6aewd"]
+albedo_color = Color(0.47, 0.0282, 0.07238, 1)
+albedo_texture = ExtResource("3_amygn")
+uv1_scale = Vector3(50, 4, 40)
+
+[sub_resource type="Environment" id="Environment_amygn"]
+background_mode = 1
+
+[node name="Map" type="Node3D"]
+script = ExtResource("1_ps1la")
+
+[node name="Player" parent="." instance=ExtResource("1_lxy7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7301, 0, 43.9016)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_83ytx")
+
+[node name="BG" type="CSGBox3D" parent="NavigationRegion3D"]
+use_collision = true
+size = Vector3(360, 1, 360)
+material = SubResource("StandardMaterial3D_83ytx")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.68702, 0)
+use_collision = true
+size = Vector3(10, 10, 10)
+
+[node name="Wall1" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 180)
+use_collision = true
+size = Vector3(360, 40, 10)
+material = SubResource("StandardMaterial3D_6aewd")
+
+[node name="Wall2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -180)
+use_collision = true
+size = Vector3(360, 40, 10)
+material = SubResource("StandardMaterial3D_6aewd")
+
+[node name="Wall3" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 180, 20, 0)
+use_collision = true
+size = Vector3(360, 40, 10)
+material = SubResource("StandardMaterial3D_6aewd")
+
+[node name="Wall4" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -180, 20, 0)
+use_collision = true
+size = Vector3(360, 40, 10)
+material = SubResource("StandardMaterial3D_6aewd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_amygn")
+
+[node name="MrFatMan" parent="." instance=ExtResource("4_ps1la")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.1245, 0.5, 0)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("6_u2i7p")]

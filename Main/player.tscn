@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://clujkp6qjlnvo"]
+
+[ext_resource type="Script" uid="uid://dk11hgy0dotv0" path="res://Main/player.gd" id="1_oqfe6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p1i2k"]
+height = 1.8
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_oqfe6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_p1i2k")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SpringArm3D/Camera3D"]
+light_energy = 3.0
+shadow_enabled = true
+omni_range = 15.0

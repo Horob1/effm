@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8jgb8k8raj45"]
+
+[ext_resource type="Script" uid="uid://dtvf0hl4i8l7l" path="res://Main/mr_fat_man.gd" id="1_8cewr"]
+[ext_resource type="AudioStream" uid="uid://cxo77o7b53wl4" path="res://audios/mrfatmanaudio.mp3" id="2_xxryn"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_c62rh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cewr"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c62rh"]
+
+[node name="MrFatMan" type="CharacterBody3D"]
+script = ExtResource("1_8cewr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_c62rh")
+surface_material_override/0 = SubResource("StandardMaterial3D_8cewr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_c62rh")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_xxryn")
+volume_db = 25.0
+autoplay = true
+max_distance = 25.0
