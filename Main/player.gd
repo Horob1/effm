@@ -2,8 +2,8 @@ extends CharacterBody3D
 
 @export var speed := 5.0
 @export var mouse_sensitivity := 0.002
-
-var camera: Camera3D
+@export var look_sensitivity := 2.0
+@onready var camera = $SpringArm3D/Camera3D
 
 func _ready():
 	camera = $SpringArm3D/Camera3D
@@ -29,3 +29,8 @@ func _physics_process(delta):
 	velocity.x = dir.normalized().x * speed
 	velocity.z = dir.normalized().z * speed
 	move_and_slide()
+
+func update_look_input(input_vec: Vector2) -> void:
+	rotate_y(-input_vec.x * look_sensitivity)
+	camera.rotate_x(-input_vec.y * look_sensitivity)
+	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -80, 80)

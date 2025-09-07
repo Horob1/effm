@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmq0abm5ncob"]
+
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="1_v2lfg"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="JoystickLook" parent="." instance=ExtResource("1_v2lfg")]
+offset_left = 1712.0
+offset_top = -606.0
+offset_right = 2012.0
+offset_bottom = -306.0
+scale = Vector2(2, 2)
+pressed_color = Color(0.75, 0.75, 0.75, 0.392157)
+use_input_actions = false
+
+[node name="JoystickMove" parent="." instance=ExtResource("1_v2lfg")]
+offset_left = 6.0
+offset_top = -607.0
+offset_right = 306.0
+offset_bottom = -307.0
+scale = Vector2(2, 2)
+pressed_color = Color(0.75, 0.75, 0.75, 0.392157)
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_forward"
+action_down = "move_backward"

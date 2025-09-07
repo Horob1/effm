@@ -22,4 +22,4 @@ current = true
 [node name="OmniLight3D" type="OmniLight3D" parent="SpringArm3D/Camera3D"]
 light_energy = 3.0
 shadow_enabled = true
-omni_range = 15.0
+omni_range = 10.0
