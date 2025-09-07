@@ -1,112 +1,123 @@
 extends Node3D
 @onready var mr_fat_man: CharacterBody3D = $MrFatMan
+
 @onready var player: CharacterBody3D = $Player
 @onready var joystick_look: VirtualJoystick = $CanvasLayer/JoystickLook
 @onready var joystick_move: VirtualJoystick = $CanvasLayer/JoystickMove
+var rng = RandomNumberGenerator.new()
 
-const SPAWN_AREA_SIZE = 200.0
+const L1: Vector3 = Vector3(-28.60, 0.5, 0.874)
+const L1B: Vector3 = Vector3(-46.267, 0.5, -7.704)
+
+const L2: Vector3 = Vector3(30.273, 0.5, 0.874)
+const L2B: Vector3 = Vector3(21.287, 0.5, 12.719)
+
+const L3: Vector3 = Vector3(-44.815, 0.5, 11.962)
+const L3B: Vector3 = Vector3(-19.212, 0.5, 38.417)
+
+const L4: Vector3 = Vector3(20.22, 0.5, -41.389)
+const L4B: Vector3 = Vector3(4.358, 0.5, -33.854)
+
+const SPAWN_AREA_SIZE = 50.0
 const MIN_DISTANCE = 30.0
+
+@export var item_scene = preload("res://Main/perfume.tscn")
+@export var item_count := 36
+@export var map_bounds := Vector3(50, 0, 50) 
+@export var item_radius := 2.5
+
+@export var count: int
+var fistTime9: bool = true
+var fistTime18: bool = true
+var fistTime30: bool = true
+var fistTime34: bool = true
 
 func _ready():
 	if not (OS.get_name() == "Android" or OS.get_name() == "iOS"):
 		joystick_look.visible = false
 		joystick_move.visible = false
-	#spawn_objects_randomly()
+	count = 0;
+	rng.randomize()
+	spawn_items()
+	var random_number = rng.randi_range(1, 4)
+	match random_number:
+		1:
+			player.global_transform.origin = L1
+			mr_fat_man.global_transform.origin = L1B
+		2:
+			player.global_transform.origin = L2
+			mr_fat_man.global_transform.origin = L2B
+		3:
+			player.global_transform.origin = L3
+			mr_fat_man.global_transform.origin = L3B
+		4:
+			player.global_transform.origin = L4
+			mr_fat_man.global_transform.origin = L4B
 
 func _physics_process(delta: float):
-	mr_fat_man.update_target_location(player.global_transform.origin)
+	var target = player.global_transform.origin
+	mr_fat_man.update_target_location(target)
 	var vec: Vector2 = joystick_look.output 
 	if vec.length() > 0.1:
 		player.update_look_input(vec * delta) 
+	if(fistTime9 && count == 9): 
+		mr_fat_man.update_speed(4.75)
+		fistTime9 = false
+	if(fistTime18 && count == 18): 
+		mr_fat_man.update_speed(5)
+		fistTime18 = false
+	if(fistTime30 && count == 30): 
+		mr_fat_man.update_speed(5.25)
+		fistTime30 = false
+	if(fistTime34 && count == 34): 
+		mr_fat_man.update_speed(5.5)
+		fistTime34 = false
+	if(count == 36):
+		call_deferred("_go_to_win_scene")
 
-func spawn_objects_randomly():
-	var player_pos = get_random_position()
-	var mr_fat_man_pos = get_valid_position_for_second_object(player_pos)
-	
-	# Đặt vị trí cho Player
-	player.global_position = player_pos
-	print("Player spawned at: ", player_pos)
-	
-	# Đặt vị trí cho MrFatMan
-	mr_fat_man.global_position = mr_fat_man_pos
-	print("MrFatMan spawned at: ", mr_fat_man_pos)
-	
-	# In khoảng cách giữa 2 vật thể để kiểm tra
-	var distance = player_pos.distance_to(mr_fat_man_pos)
-	print("Distance between objects: ", distance, "m")
+func _go_to_win_scene():
+	get_tree().change_scene_to_file("res://Win/Win.tscn")
 
-func get_random_position() -> Vector3:
-	var x = randf_range(-SPAWN_AREA_SIZE/2, SPAWN_AREA_SIZE/2)
-	var z = randf_range(-SPAWN_AREA_SIZE/2, SPAWN_AREA_SIZE/2)
-	var y = 0.0  # Có thể điều chỉnh độ cao nếu cần
-	
-	return Vector3(x, y, z)
-
-func get_valid_position_for_second_object(first_pos: Vector3) -> Vector3:
-	var attempts = 0
-	var max_attempts = 100  # Tránh vòng lặp vô tận
-	
-	while attempts < max_attempts:
-		var new_pos = get_random_position()
-		var distance = first_pos.distance_to(new_pos)
-		
-		# Kiểm tra nếu khoảng cách >= MIN_DISTANCE
-		if distance >= MIN_DISTANCE:
-			return new_pos
-		
-		attempts += 1
-	
-	# Nếu không tìm được vị trí hợp lệ sau max_attempts lần thử
-	# Tạo vị trí đảm bảo khoảng cách tối thiểu
-	return get_guaranteed_distant_position(first_pos)
-
-func get_guaranteed_distant_position(reference_pos: Vector3) -> Vector3:
-	# Tạo một vector hướng ngẫu nhiên
-	var angle = randf() * 2 * PI
-	var direction = Vector3(cos(angle), 0, sin(angle))
-	
-	# Tính vị trí mới với khoảng cách tối thiểu
-	var new_pos = reference_pos + direction * MIN_DISTANCE * 1.1  # 1.1 để đảm bảo > MIN_DISTANCE
-	
-	# Đảm bảo vị trí mới vẫn trong khu vực spawn
-	new_pos.x = clamp(new_pos.x, -SPAWN_AREA_SIZE/2, SPAWN_AREA_SIZE/2)
-	new_pos.z = clamp(new_pos.z, -SPAWN_AREA_SIZE/2, SPAWN_AREA_SIZE/2)
-	
-	return new_pos
-
-# Hàm để respawn lại các vật thể (có thể gọi từ UI hoặc input)
-func respawn_objects():
-	spawn_objects_randomly()
-
-# Optional: Kiểm tra va chạm với các vật thể khác
-func is_position_clear(pos: Vector3, check_radius: float = 2.0) -> bool:
+func get_free_position(radius: float = 1.0, max_attempts: int = 20) -> Vector3:
 	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsShapeQueryParameters3D.new()
 	
-	# Tạo sphere shape để kiểm tra
-	var sphere = SphereShape3D.new()
-	sphere.radius = check_radius
-	query.shape = sphere
-	query.transform.origin = pos
-	
-	# Kiểm tra va chạm
-	var result = space_state.intersect_shape(query)
-	return result.is_empty()
+	for i in max_attempts:
+		var pos = Vector3(
+			randf() * map_bounds.x * 2 - map_bounds.x,
+			2,
+			randf() * map_bounds.z * 2 - map_bounds.z
+		)
 
-# Phiên bản nâng cao với kiểm tra va chạm
-func get_valid_position_with_collision_check(first_pos: Vector3) -> Vector3:
-	var attempts = 0
-	var max_attempts = 200
-	
-	while attempts < max_attempts:
-		var new_pos = get_random_position()
-		var distance = first_pos.distance_to(new_pos)
-		
-		# Kiểm tra khoảng cách và va chạm
-		if distance >= MIN_DISTANCE and is_position_clear(new_pos):
-			return new_pos
-		
-		attempts += 1
-	
-	# Fallback nếu không tìm được vị trí
-	return get_guaranteed_distant_position(first_pos)
+		var shape = SphereShape3D.new()
+		shape.radius = radius
+
+		# Tạo params
+		var params = PhysicsShapeQueryParameters3D.new()
+		params.shape = shape
+		params.transform = Transform3D(Basis(), pos)
+		params.collide_with_bodies = true
+		params.collide_with_areas = true
+
+		# Kiểm tra va chạm
+		var collisions = space_state.intersect_shape(params)
+		if collisions.is_empty():
+			return pos
+
+	return Vector3(
+		randf() * map_bounds.x * 2 - map_bounds.x,
+		0,
+		randf() * map_bounds.z * 2 - map_bounds.z
+	)
+
+
+# Spawn tất cả item
+func spawn_items():
+	for i in item_count:
+		var item = item_scene.instantiate()
+		item.position = get_free_position(item_radius)
+		add_child(item)
+		item.connect("picked_up", Callable(self, "_on_item_picked_up"))
+
+# Callback khi Player nhặt vật phẩm
+func _on_item_picked_up(player):
+	count=count+1

@@ -1,12 +1,13 @@
 extends CharacterBody3D
 
-@export var speed := 5.0
+@export var speed := 5
 @export var mouse_sensitivity := 0.002
-@export var look_sensitivity := 2.0
+@export var look_sensitivity := 1.5
 @onready var camera = $SpringArm3D/Camera3D
 
 func _ready():
 	camera = $SpringArm3D/Camera3D
+	add_to_group("Player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event):

@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://d16lyfxfyutg4"]
+
+[ext_resource type="Texture2D" uid="uid://o5mrgrwfxakp" path="res://images/mb_lose.png" id="1_qx4g3"]
+[ext_resource type="Script" uid="uid://cr8gmwj22btf1" path="res://Lose/lose.gd" id="1_vsmdd"]
+[ext_resource type="Texture2D" uid="uid://dtfv1h588ylop" path="res://images/mb_blood.png" id="2_ip0k8"]
+[ext_resource type="Texture2D" uid="uid://c0jjnb4go1aqw" path="res://images/5869928.png" id="3_vsmdd"]
+[ext_resource type="AudioStream" uid="uid://cx028kmou56uu" path="res://audios/Tải Rồi rồi mày xong rồi Sound Effect mp3 - Download.mp3" id="5_6mqtj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6mqtj"]
+radius = 297.1
+
+[node name="Lose" type="Node2D"]
+script = ExtResource("1_vsmdd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 2314.0
+offset_bottom = 1369.0
+scale = Vector2(1.08, 1.08)
+texture = ExtResource("1_qx4g3")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 817.0
+offset_top = 61.0
+offset_right = 1638.0
+offset_bottom = 198.0
+theme_override_font_sizes/font_size = 100
+text = "Em trai đã bị bắt!"
+
+[node name="MbBlood" type="Sprite2D" parent="."]
+position = Vector2(234, 790)
+scale = Vector2(0.240001, 0.280001)
+texture = ExtResource("2_ip0k8")
+flip_h = true
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(830, 496)
+texture_normal = ExtResource("3_vsmdd")
+shape = SubResource("CircleShape2D_6mqtj")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_6mqtj")
+volume_db = 24.0
+autoplay = true

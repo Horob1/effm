@@ -8,7 +8,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_cruaa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cruaa"]
-size = Vector2(200, 100)
+size = Vector2(220, 120)
 
 [node name="MainMenu" type="Node2D"]
 material = SubResource("ShaderMaterial_cruaa")
@@ -35,10 +35,10 @@ position = Vector2(1114, 828)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_cruaa")
 
-[node name="Button" type="Button" parent="PlayButton"]
-offset_left = -82.6667
-offset_top = -57.3333
-offset_right = 76.3333
-offset_bottom = 53.6667
-theme_override_font_sizes/font_size = 75
+[node name="Label" type="Label" parent="PlayButton"]
+offset_left = -97.0
+offset_top = -75.0
+offset_right = 104.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 100
 text = "Play"

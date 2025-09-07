@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cx028kmou56uu"
+path="res://.godot/imported/Tải Rồi rồi mày xong rồi Sound Effect mp3 - Download.mp3-25d28f1bc9e11e1768a1abd6d09b490d.mp3str"
+
+[deps]
+
+source_file="res://audios/Tải Rồi rồi mày xong rồi Sound Effect mp3 - Download.mp3"
+dest_files=["res://.godot/imported/Tải Rồi rồi mày xong rồi Sound Effect mp3 - Download.mp3-25d28f1bc9e11e1768a1abd6d09b490d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

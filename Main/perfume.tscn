@@ -1,72 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://dalo2w68u07gi"]
+[gd_scene load_steps=4 format=3 uid="uid://dalo2w68u07gi"]
 
-[ext_resource type="Texture2D" uid="uid://b5ryrtb1kydei" path="res://images/mb.png" id="1_b7cem"]
+[ext_resource type="PackedScene" uid="uid://do2wjgheurbjv" path="res://models/bleu_de_chanel_perfume..glb" id="1_b7cem"]
+[ext_resource type="Script" uid="uid://bx7wrvxifa282" path="res://Main/area_3d.gd" id="2_dpiww"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04eew"]
-albedo_color = Color(0.807843, 0, 0, 1)
-metallic = 0.5
-roughness = 0.0
-refraction_enabled = true
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ln0m"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0nfmc"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_qsfm1"]
-material = SubResource("StandardMaterial3D_0nfmc")
-size = Vector3(3, 3, 3)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ra1lw"]
-points = PackedVector3Array(-1.5, -1.49971, -1.49971, 1.5, 1.49978, 1.49978, 1.5, -1.49978, 1.49978, 1.5, 1.49978, -1.49978, -1.5, 1.49971, 1.49971, 1.5, -1.49978, -1.49978, -1.5, -1.49971, 1.49971, -1.5, 1.49971, -1.49971)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78lvp"]
-transparency = 1
-albedo_texture = ExtResource("1_b7cem")
-metallic = 1.0
-roughness = 0.0
-refraction_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jukdv"]
-albedo_color = Color(0.960784, 0.811765, 0.356863, 1)
-metallic = 1.0
-metallic_specular = 0.48
-roughness = 0.12
-clearcoat_enabled = true
-clearcoat_roughness = 0.11
-
-[node name="Perfume" type="AnimatableBody3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.31379, 0)
-material_override = SubResource("StandardMaterial3D_04eew")
-mesh = SubResource("BoxMesh_qsfm1")
+[node name="Area3D" type="Area3D"]
+script = ExtResource("2_dpiww")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.31379, 0)
-shape = SubResource("ConvexPolygonShape3D_ra1lw")
+shape = SubResource("BoxShape3D_5ln0m")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0141208, 4.56627, 0)
-shape = SubResource("ConvexPolygonShape3D_ra1lw")
-
-[node name="ReflectionProbeCube" type="ReflectionProbe" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.30907, 0)
-size = Vector3(3.1, 3.1, 3.1)
-box_projection = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03472, 2.32459, 1.58093)
-size = Vector3(3, 3, 0.1)
-material = SubResource("StandardMaterial3D_78lvp")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0137041, 4.28945, 0)
-radius = 0.726
-height = 0.837
-sides = 18
-material = SubResource("StandardMaterial3D_jukdv")
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1.0662, 0, 1.05509, 0, 1, 0, -1.05509, 0, 1.0662, 0.0137041, 4.84793, 0)
-radius = 0.726
-height = 0.837
-sides = 4
-material = SubResource("StandardMaterial3D_jukdv")
+[node name="Model" parent="." instance=ExtResource("1_b7cem")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.25, 0)
