@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var nav_agent = $NavigationAgent3D
-var SPEED = 4.5
+var SPEED = 4
 var ROTATION_SPEED = 5.0
 
 func _physics_process(delta):

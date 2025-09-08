@@ -42,7 +42,6 @@ target_desired_distance = 2.0
 path_height_offset = 0.1
 avoidance_enabled = true
 max_speed = 15.0
-debug_enabled = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_xxryn")

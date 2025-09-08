@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blr5vyevpfwfe"
-path.s3tc="res://.godot/imported/2_UJGO.jpg-16d468549210ae6f7628f192df51245e.s3tc.ctex"
-path.etc2="res://.godot/imported/2_UJGO.jpg-16d468549210ae6f7628f192df51245e.etc2.ctex"
+uid="uid://5e5w3tt2n3s8"
+path.s3tc="res://.godot/imported/Screenshot 2025-09-07 204244.png-28e7ae58d5f6a7bf229f37a1c2e84366.s3tc.ctex"
+path.etc2="res://.godot/imported/Screenshot 2025-09-07 204244.png-28e7ae58d5f6a7bf229f37a1c2e84366.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://images/2_UJGO.jpg"
-dest_files=["res://.godot/imported/2_UJGO.jpg-16d468549210ae6f7628f192df51245e.s3tc.ctex", "res://.godot/imported/2_UJGO.jpg-16d468549210ae6f7628f192df51245e.etc2.ctex"]
+source_file="res://images/meme_img/Screenshot 2025-09-07 204244.png"
+dest_files=["res://.godot/imported/Screenshot 2025-09-07 204244.png-28e7ae58d5f6a7bf229f37a1c2e84366.s3tc.ctex", "res://.godot/imported/Screenshot 2025-09-07 204244.png-28e7ae58d5f6a7bf229f37a1c2e84366.etc2.ctex"]
 
 [params]
 

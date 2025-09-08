@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blr5vyevpfwfe"
-path.s3tc="res://.godot/imported/2_UJGO.jpg-16d468549210ae6f7628f192df51245e.s3tc.ctex"
-path.etc2="res://.godot/imported/2_UJGO.jpg-16d468549210ae6f7628f192df51245e.etc2.ctex"
+uid="uid://d1f34ii50c3nc"
+path.s3tc="res://.godot/imported/image.jpg-1bebf371bb636802ed86aa80a618671d.s3tc.ctex"
+path.etc2="res://.godot/imported/image.jpg-1bebf371bb636802ed86aa80a618671d.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://images/2_UJGO.jpg"
-dest_files=["res://.godot/imported/2_UJGO.jpg-16d468549210ae6f7628f192df51245e.s3tc.ctex", "res://.godot/imported/2_UJGO.jpg-16d468549210ae6f7628f192df51245e.etc2.ctex"]
+source_file="res://images/thethao/image.jpg"
+dest_files=["res://.godot/imported/image.jpg-1bebf371bb636802ed86aa80a618671d.s3tc.ctex", "res://.godot/imported/image.jpg-1bebf371bb636802ed86aa80a618671d.etc2.ctex"]
 
 [params]
 

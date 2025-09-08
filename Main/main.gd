@@ -7,16 +7,14 @@ extends Node3D
 var rng = RandomNumberGenerator.new()
 
 const L1: Vector3 = Vector3(-28.60, 0.5, 0.874)
-const L1B: Vector3 = Vector3(-46.267, 0.5, -7.704)
 
 const L2: Vector3 = Vector3(30.273, 0.5, 0.874)
-const L2B: Vector3 = Vector3(21.287, 0.5, 12.719)
 
 const L3: Vector3 = Vector3(-44.815, 0.5, 11.962)
-const L3B: Vector3 = Vector3(-19.212, 0.5, 38.417)
 
 const L4: Vector3 = Vector3(20.22, 0.5, -41.389)
-const L4B: Vector3 = Vector3(4.358, 0.5, -33.854)
+
+const dfL: Vector3 = Vector3(13.827, 0.5, 25.19)
 
 const SPAWN_AREA_SIZE = 50.0
 const MIN_DISTANCE = 30.0
@@ -43,16 +41,14 @@ func _ready():
 	match random_number:
 		1:
 			player.global_transform.origin = L1
-			mr_fat_man.global_transform.origin = L1B
 		2:
 			player.global_transform.origin = L2
-			mr_fat_man.global_transform.origin = L2B
 		3:
 			player.global_transform.origin = L3
-			mr_fat_man.global_transform.origin = L3B
+
 		4:
 			player.global_transform.origin = L4
-			mr_fat_man.global_transform.origin = L4B
+	mr_fat_man.global_transform.origin = dfL
 
 func _physics_process(delta: float):
 	var target = player.global_transform.origin
@@ -61,16 +57,16 @@ func _physics_process(delta: float):
 	if vec.length() > 0.1:
 		player.update_look_input(vec * delta) 
 	if(fistTime9 && count == 9): 
-		mr_fat_man.update_speed(4.75)
+		mr_fat_man.update_speed(4.25)
 		fistTime9 = false
 	if(fistTime18 && count == 18): 
-		mr_fat_man.update_speed(5)
+		mr_fat_man.update_speed(4.5)
 		fistTime18 = false
 	if(fistTime30 && count == 30): 
-		mr_fat_man.update_speed(5.25)
+		mr_fat_man.update_speed(4.75)
 		fistTime30 = false
 	if(fistTime34 && count == 34): 
-		mr_fat_man.update_speed(5.5)
+		mr_fat_man.update_speed(5.25)
 		fistTime34 = false
 	if(count == 36):
 		call_deferred("_go_to_win_scene")
